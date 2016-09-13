@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <style>
+  #image {
+/* the image you want to 'watermark' */
+height: 100px; /* or whatever, equal to the image you want 'watermarked' */
+width: 300px; /* as above */
+
+background-position:center;
+background-repeat: no-repeat;
+position: relative;
+
+ z-index:99;
+}
+#layoutFooter {
+  height:56px;
+  background:url(animal-planet-images/menuBackground.gif) repeat-x;
+  text-align:center;
+}
+#layoutFooter p {
+  padding-top:10px;
+  color:#BCBA9E;
+}
+#layoutFooter a {
+  color:#BCBA9E;
+  text-decoration:underline;
+}
+#layoutFooter a:hover {
+  color:#BCBA9E;
+  text-decoration:none;
+}
+iframe{
+  max-width: 100% !important;
+}
+ion-header-bar{
+  max-width: 100% !important;
+}
+
+.bar-header{
+  height: 80px !important
+}
+
+.has-header{
+  top:80px !important
+}
+/* unvisited link */
+a:link {
+    color: red;
+}
+
+/* visited link */
+a:visited {
+    color: purple;
+}
+
+/* mouse over link */
+a:hover {
+    color: blue;
+}
+
+/* selected link */
+a:active {
+    color: blue;
+}
+</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+	
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+  </head>
+
+  <body ng-app="todo" ng-controller="TodoCtrl">
+  
+  <script src="xml2json.min.js"></script>
+  
+  <ion-side-menus>
+
+    <!-- Center content -->
+    <ion-side-menu-content>
+      <ion-header-bar class="bar-positive" style="background-color:#DC143C">
+	  <div id="image">
+    <img src="http://dailyutahchronicle.com/wp-content/uploads/2015/08/onlinemastheadsdmk2.png" alt="..." />
+</div>
+
+
+        <h1 class="title"><font size="6">News</h1>
+		
+		
+      </ion-header-bar>
+      
+	   <ion-content ng-controller="TodoCtrl" ng-init="init()" overflow-scroll="true">
+                <div class="list">
+                    <div ng-repeat="entry in entries" class="item" ng-click="browse(entry.link)" >
+					<a ng-href="{{entry.link}}" target="_blank">
+                        <b>{{entry.title}}</b><br>
+                        <span ng-bind-html="entry.contentSnippet"></span>
+                    </div>
+                </div>
+				<h1 class="title"><font size="3">Our Office</h1>
+				<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12087.45964998805!2d-111.8461739!3d40.7649958!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x5a5f2e267d707686!2sDaily+Utah+Chronicle!5e0!3m2!1sen!2sus!4v1472431601736" width="800" height="350" frameborder="0" style="border:0" allowfullscreen style="margin-left: 80px"></iframe>
+				
+				
+				<iframe width="750" height="350" src="https://www.youtube.com/embed/XkY1CPOE9Cw" frameborder="0" allowfullscreen style="margin-left: 80px"></iframe>
+				<div id="layoutFooter" style="background-color:black">
+    <p>Copyright  2016. Designed by Mayank Badika<br />
+      <a href="">Privacy Policy</a> | <a href="">Terms of Use</a> </a></p>
+  </div>
+      </ion-content>
+	  
+    </ion-side-menu-content>
+	
+
+  
+  
+    <!-- Left menu -->
+	
+  
+    <ion-side-menu side="left">
+    <header class="bar bar-header bar-stable" style="background-color:#DC143C">
+      <h1 class="title"><font size="6">Articles</h1>
+    </header>
+	
+    <ion-content class="has-header" ng-controller="TodoCtrl" ng-init="init()" >
+      <ion-list>
+        <ion-item ng-repeat="entry in entries" href="{{entry.link}}" ng-click="browse(entry.link)" >
+		
+          {{entry.title}}
+		  
+        </ion-item>
+        
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+  </ion-side-menus>
+  
+</body>
+
+</html>
